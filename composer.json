@@ -1,6 +1,6 @@
 {
 	"name": "pfaciana/composer-smart-autoloader",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A PHP autoloader that manages class loading across multiple Composer dependencies, prioritizing the latest compatible versions.",
 	"keywords": [],
 	"homepage": "https://renderdev.com/",

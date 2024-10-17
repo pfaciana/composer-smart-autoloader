@@ -7,7 +7,7 @@ namespace Render\Autoload;
  *
  * Handles class autoloading and manages class maps for different projects.
  *
- * @package RWP\Autoload
+ * @package Render\Autoload
  */
 class ClassLoader
 {

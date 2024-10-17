@@ -13,21 +13,21 @@ The primary goal of ClassLoader is to enhance the reliability and consistency of
 To use ClassLoader in your project, you can simply get the instance and run it:
 
 ```php
-\RWP\Autoload\ClassLoader::getInstance();
+\Render\Autoload\ClassLoader::getInstance();
 ```
 
 If you're using this in a WordPress plugin, you can run after all the plugins have loaded
 
 ```php
 add_action( 'plugins_loaded', function () {
-	\RWP\Autoload\ClassLoader::getInstance();
+	\Render\Autoload\ClassLoader::getInstance();
 }, PHP_INT_MIN );
 ```
 
 If new vendor packages have been added since you last ran it, you can re-run it using the `run` method:
 
 ```php
-\RWP\Autoload\ClassLoader::getInstance()->run();
+\Render\Autoload\ClassLoader::getInstance()->run();
 ```
 
 For example, you many want to run this ClassLoad right away, but then re-run after all plugins are installed
@@ -35,16 +35,16 @@ For example, you many want to run this ClassLoad right away, but then re-run aft
 ```php
 require_once ( __DIR__ ) . '/vendor/autoload.php';
 
-\RWP\Autoload\ClassLoader::getInstance();
+\Render\Autoload\ClassLoader::getInstance();
 
 \add_action( 'plugins_loaded', function () {
-	\RWP\Autoload\ClassLoader::getInstance()->run();
+	\Render\Autoload\ClassLoader::getInstance()->run();
 }, PHP_INT_MIN );
 ```
 
 This will replace the cached class maps with the classes added since the last run.
 
-> NOTE: `run()` will automatically run just the first time you instantiate the ClassLoader. If you call `getInstance()` a second time, nothing will happen. If you want to re-run setting the class map, you need to call the `run()` method. If you don't want the ClassLoader to automatically execute `run()` at all, set the `$run` parameter to `FALSE` like `\RWP\Autoload\ClassLoader::getInstance( FALSE );` on instantiation.
+> NOTE: `run()` will automatically run just the first time you instantiate the ClassLoader. If you call `getInstance()` a second time, nothing will happen. If you want to re-run setting the class map, you need to call the `run()` method. If you don't want the ClassLoader to automatically execute `run()` at all, set the `$run` parameter to `FALSE` like `\Render\Autoload\ClassLoader::getInstance( FALSE );` on instantiation.
 
 ### Dump Autoloading (Optimize)
 
