@@ -1,0 +1,34 @@
+{
+	"name": "pfaciana/composer-smart-autoloader",
+	"version": "1.0.0",
+	"description": "A PHP autoloader that manages class loading across multiple Composer dependencies, prioritizing the latest compatible versions.",
+	"keywords": [],
+	"homepage": "https://renderdev.com/",
+	"license": "GPL-2.0-only",
+	"authors": [
+		{
+			"name": "Phil Faciana",
+			"email": "phil@renderdev.com",
+			"homepage": "https://renderdev.com/",
+			"role": "Developer"
+		}
+	],
+	"scripts": {
+		"cdao": "composer dumpautoload --optimize",
+		"test": "vendor/bin/pest"
+	},
+	"autoload": {
+		"psr-4": {
+			"Render\\": "src/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true
+		}
+	},
+	"require-dev": {
+		"pestphp/pest": "^3.4",
+		"mockery/mockery": "^1.6"
+	}
+}
