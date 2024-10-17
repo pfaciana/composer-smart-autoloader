@@ -63,6 +63,8 @@ class ClassLoader
 	 */
 	public function run (): array
 	{
+		spl_autoload_unregister( [ $this, 'loadClass' ] );
+		spl_autoload_register( [ $this, 'loadClass' ], TRUE, TRUE );
 		$loaders           = \Composer\Autoload\ClassLoader::getRegisteredLoaders();
 		$projects          = $this->getProjects( $loaders );
 		$allRawData        = \Composer\InstalledVersions::getAllRawData();
@@ -378,5 +380,3 @@ function includeFile ( string $file ): void
 {
 	include $file;
 }
-
-return;
