@@ -120,9 +120,11 @@ class ClassLoader
 			$projects['repos'][$rootPath]      ??= [];
 
 			if ( file_exists( $installedFile = "{$vendorPath}composer/installed.php" ) ) {
-				$project  = include $installedFile;
-				$root     = $project['root'];
-				$rootPath = $this->normalizePath( $root['install_path'] );
+				$project = include $installedFile;
+				$root    = $project['root'];
+				if ( array_key_exists( 'install_path', $root ) && !empty( $root['install_path'] ) ) {
+					$rootPath = $this->normalizePath( $root['install_path'] );
+				}
 
 				$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromData( $projects['repos'][$rootPath], $project['versions'] );
 				$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $projects['repos'][$rootPath], $rootPath, $project );
@@ -151,12 +153,14 @@ class ClassLoader
 	public function getProjectFallback ( array $repos, array $allRawData ): array
 	{
 		foreach ( $allRawData as $project ) {
-			$root     = $project['root'];
-			$rootPath = $this->normalizePath( $root['install_path'] );
-			if ( !array_key_exists( $rootPath, $repos ) ) {
-				$repos[$rootPath] ??= [];
-				$repos[$rootPath] = $this->setProjectDepsVersionsFromData( $repos[$rootPath], $project['versions'] );
-				$repos[$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $repos[$rootPath], $rootPath, $project );
+			$root = $project['root'];
+			if ( array_key_exists( 'install_path', $root ) && !empty( $root['install_path'] ) ) {
+				$rootPath = $this->normalizePath( $root['install_path'] );
+				if ( !array_key_exists( $rootPath, $repos ) ) {
+					$repos[$rootPath] ??= [];
+					$repos[$rootPath] = $this->setProjectDepsVersionsFromData( $repos[$rootPath], $project['versions'] );
+					$repos[$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $repos[$rootPath], $rootPath, $project );
+				}
 			}
 		}
 
