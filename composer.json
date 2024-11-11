@@ -1,6 +1,6 @@
 {
 	"name": "pfaciana/composer-smart-autoloader",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "A PHP autoloader that manages class loading across multiple Composer dependencies, prioritizing the latest compatible versions.",
 	"keywords": [],
 	"homepage": "https://renderdev.com/",
@@ -35,10 +35,16 @@
 	"config": {
 		"allow-plugins": {
 			"pestphp/pest-plugin": true
-		}
+		},
+		"files": [
+			"./load.php"
+		]
 	},
 	"require-dev": {
 		"pestphp/pest": "^3.4",
 		"mockery/mockery": "^1.6"
+	},
+	"require": {
+		"pfaciana/wp-update-checker": "^1"
 	}
 }
