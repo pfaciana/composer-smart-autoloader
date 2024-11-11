@@ -1,16 +1,16 @@
-# ClassLoader
+# Composer Smart Autoloader
 
 ## Overview
 
-ClassLoader is an autoloading solution designed to handle PHP project structures with multiple Composer dependencies. It's useful when multiple `composer.json` files are include the same codebase and the same repo is included with different versions (like a WordPress site with multiple plugins that have a composer.json and vendor folder).
+Composer Smart Autoloader is an autoloading solution designed to handle PHP project structures with multiple Composer dependencies. It's useful when multiple `composer.json` files are include the same codebase and the same repo is included with different versions (like a WordPress site with multiple plugins that have a composer.json and vendor folder).
 
 ### Purpose
 
-The primary goal of ClassLoader is to enhance the reliability and consistency of autoloading in complex PHP applications. It addresses the common issue of "first loaded, first served" in traditional autoloading mechanisms, which can lead to missing features or inconsistent behavior when older versions of packages are loaded instead of newer ones.
+The primary goal of Composer Smart Autoloader is to enhance the reliability and consistency of autoloading in complex PHP applications. It addresses the common issue of "first loaded, first served" in traditional autoloading mechanisms, which can lead to missing features or inconsistent behavior when older versions of packages are loaded instead of newer ones.
 
 ## Usage
 
-To use ClassLoader in your project, you can simply get the instance and run it:
+To use Composer Smart Autoloader in your project, you can simply get the instance and run it:
 
 ```php
 \Render\Autoload\ClassLoader::getInstance();
@@ -54,7 +54,7 @@ If you're only concerned with packages you/your team personally created, then yo
 
 ## How It Works
 
-1. **Version Analysis**: ClassLoader analyzes the versions of all installed packages across different `composer.json` files in the project.
+1. **Version Analysis**: Composer Smart Autoloader analyzes the versions of all installed packages across different `composer.json` files in the project.
 2. **Weight Calculation**: It assigns weights to different versions of the same package, favoring more recent versions.
 3. **Smart Loading**: When autoloading classes, it prioritizes loading from the most up-to-date version of a package.
 4. **Conflict Resolution**: In case of version conflicts, it attempts to use the latest compatible version, reducing the risk of missing required features.
