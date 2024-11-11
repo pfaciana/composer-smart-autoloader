@@ -17,6 +17,16 @@
 		"cdao": "composer dumpautoload --optimize",
 		"test": "vendor/bin/pest"
 	},
+	"extra": {
+		"wordpress": {
+			"Plugin Name": "WP Composer Smart Autoloader",
+			"Remote File": "composer.json",
+			"Release Asset": "composer-smart-autoloader.zip",
+			"Requires at least": "6.4",
+			"License": "GPLv2 only",
+			"License URI": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+		}
+	},
 	"autoload": {
 		"psr-4": {
 			"Render\\": "src/"
