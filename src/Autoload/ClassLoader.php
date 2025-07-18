@@ -63,6 +63,9 @@ class ClassLoader
 	 */
 	public function run (): array
 	{
+		if ( !method_exists( \Composer\Autoload\ClassLoader::class, 'getRegisteredLoaders' ) ) {
+			return [];
+		}
 		spl_autoload_unregister( [ $this, 'loadClass' ] );
 		spl_autoload_register( [ $this, 'loadClass' ], TRUE, TRUE );
 		$loaders           = \Composer\Autoload\ClassLoader::getRegisteredLoaders();
