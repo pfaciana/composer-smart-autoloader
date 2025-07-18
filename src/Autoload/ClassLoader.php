@@ -123,11 +123,15 @@ class ClassLoader
 				$project = include $installedFile;
 				$root    = $project['root'];
 				if ( array_key_exists( 'install_path', $root ) && !empty( $root['install_path'] ) ) {
-					$rootPath = $this->normalizePath( $root['install_path'] );
+					$installPath = $this->normalizePath( $root['install_path'] );
+					if ( array_key_exists( $installPath, $projects['repos'] ) ) {
+						$rootPath = $installPath;
+					}
 				}
-
-				$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromData( $projects['repos'][$rootPath], $project['versions'] );
-				$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $projects['repos'][$rootPath], $rootPath, $project );
+				if ( array_key_exists( $rootPath, $projects['repos'] ) ) {
+					$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromData( $projects['repos'][$rootPath], $project['versions'] );
+					$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $projects['repos'][$rootPath], $rootPath, $project );
+				}
 			}
 			else {
 				$projects['repos'][$rootPath] = $this->setProjectDepsVersionsFromComposerJson( $projects['repos'][$rootPath], $rootPath );
